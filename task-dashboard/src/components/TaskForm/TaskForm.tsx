@@ -1,27 +1,29 @@
-import React, { useState } from 'react';
+import React, { useActionState, useState } from 'react';
+import { TaskFormData } from '../../types';
 
-interface Props {}
+interface Props {
+    onAddTask: (data: TaskFormData) => void;
+}
 
-const SimpleInputForm: React.FC<Props> = () => {
-  const [name, setName] = useState<string>(''); // State holds the input value
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Update state when the input changes
-    setName(event.target.value);
-  };
+const TaskForm = ({ onAddTask}: Props) => {
+ 
+    const [formData, setFormData] = useState<TaskFormData>({
+        title: "",
+  description: "",
+  priority: "medium",
+  dueDate: ""
+    });
 
-  return (
-    <form>
-      <label htmlFor="nameInput">Name:</label>
-      <input
-        type="text"
-        id="nameInput"
-        value={name} // Input value is controlled by state
-        onChange={handleChange} // State is updated on change
-      />
-      <p>Current value: {name}</p>
-    </form>
-  );
-};
+    return(
+        <form onSubmit={handleSubmit}
+        className='p-4 border rounded-lg space-y-3 bg-white dark:bg-gray-800'>
 
-export default SimpleInputForm;
+            <input type="text" />
+
+            <textarea name="" id=""/>
+
+        </form>
+    );
+
+}

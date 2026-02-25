@@ -8,6 +8,7 @@ export interface Task {
   status: TaskStatus;
   priority: 'low' | 'medium' | 'high';
   dueDate: string;
+   createdAt: string;
 }
  
 export interface TaskListProps {
@@ -28,6 +29,25 @@ export interface TaskItemProps {
 export interface TaskFilterProps {
   onFilterChange: (filters: {
     status?: TaskStatus;
-    priority?: 'low' | 'medium' | 'high';
+    Priority?: 'low' | 'medium' | 'high';
   }) => void;
 }
+
+export interface TaskFormData {
+  title: string;
+  description: string;
+  priority: TaskPriority ;
+  dueDate: string;
+}
+
+export interface FilterOptions {
+  status?: TaskStatus;
+  priority?: TaskPriority;
+  search?: string;
+}
+
+export interface UserSettings {
+  theme: 'light' | 'dark';
+  fontSize: number;
+}
+ 

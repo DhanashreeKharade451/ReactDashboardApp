@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-const TaskForm = ({ onAddTask}: Props) => {
+ const TaskForm = ({ onAddTask}: Props) => {
  
     const [formData, setFormData] = useState<TaskFormData>({
         title: "",
@@ -27,3 +27,5 @@ const TaskForm = ({ onAddTask}: Props) => {
     );
 
 }
+
+export default TaskForm;

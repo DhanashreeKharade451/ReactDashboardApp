@@ -40,7 +40,7 @@ const Dashboard = () => {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   };
 
-  const filteredTasks = filterTasks(tasks, filters);
+  const filteredTasks = filteredTasks(tasks, filters);
 
   const stats = {
     total: tasks.length,

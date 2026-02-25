@@ -1,5 +1,7 @@
 //TaskList Component
-export type TaskStatus = 'pending' | 'in-progress' | 'completed';
+export type TaskStatus = "pending" | "in-progress" | "completed";
+export type TaskPriority = "low" | "medium" | "high";
+
  
 export interface Task {
   id: string;
@@ -10,28 +12,6 @@ export interface Task {
   dueDate: string;
    createdAt: string;
 }
- 
-export interface TaskListProps {
-  tasks: Task[];
-  onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
-  onDelete: (taskId: string) => void;
-}
-
-//TaskItem Component
-export interface TaskItemProps {
-  task: Task;
-  onStatusChange: (taskId: string, newStatus: TaskStatus) => void;
-  onDelete: (taskId: string) => void;
-}
-
-//TaskFilter Component
-
-export interface TaskFilterProps {
-  onFilterChange: (filters: {
-    status?: TaskStatus;
-    Priority?: 'low' | 'medium' | 'high';
-  }) => void;
-}
 
 export interface TaskFormData {
   title: string;
@@ -39,15 +19,32 @@ export interface TaskFormData {
   priority: TaskPriority ;
   dueDate: string;
 }
-
+ 
 export interface FilterOptions {
   status?: TaskStatus;
   priority?: TaskPriority;
   search?: string;
 }
 
-export interface UserSettings {
-  theme: 'light' | 'dark';
-  fontSize: number;
+
+export interface TaskListProps {
+  tasks: Task[];
+  onStatusChange: (id: string, status: TaskStatus) => void;
+  onDelete: (id: string) => void;
 }
- 
+
+//TaskItem Component
+export interface TaskItemProps extends TaskListProps {
+  task: Task;
+}
+
+//TaskFilter Component
+
+export interface TaskFilterProps  {
+   filters: FilterOptions;
+  onFilterChange: (filters: FilterOptions) => void;
+}
+
+
+
+

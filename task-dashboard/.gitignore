@@ -35,9 +35,28 @@ Solution: Removed explicit extensions in imports and relied on TypeScript module
     Solution: Created utility functions:
 filterTasks(tasks, filters) → filters tasks based on multiple criteria.
 sortTasksByDate(tasks) → sorts tasks by dueDate.
- 
-Your approach to component composition and state management
-******************************************************************************
+-Needed live form validation and controlled inputs.
+    Managed form state with useState.
+Added validate() function to check required fields.
+Displayed errors using local errors state.
+ ***********************************************************************************************************************************
+Q3.Your approach to component composition and state management?
+Ans:
+
+-Parent component (Dashboard): Holds main state (tasks, filters, darkMode) and orchestrates child components.
+-Child components:
+    TaskForm → Only handles task input and validation.
+    TaskFilter → Handles filter selection and search input.
+    TaskList → Receives filtered and sorted tasks, renders a list of TaskItems.
+    TaskItem → Handles individual task display, status update, and delete action.
+
+    Props + callbacks: All child-to-parent communication is handled via callbacks (onAddTask, onStatusChange, onDelete, onFilterChange).-
+
+-Centralized in Dashboard using useState.
+Derived state (processedTasks) calculated using utility functions:
+const processedTasks = sortTasksByDate(filterTasks(tasks, filters));
+*************************************************************************
+*****
 
 # Logs
 logs

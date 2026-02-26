@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { TaskFilter } from "../TaskFilter/TaskFilter.tsx";
 import TaskForm from "../TaskForm/TaskForm.tsx";
 import TaskList from "../TaskList/TaskList.tsx";
+import { filterTasks,sortTasksByDate } from "../../utils/taskUtils.ts";
+import { Task,TaskFormData, FilterOptions,TaskStatus } from "../../types/index.ts";
 
 
 const Dashboard = () => {
@@ -9,16 +11,18 @@ const Dashboard = () => {
   const [filters, setFilters] = useState<FilterOptions>({});
   const [darkMode, setDarkMode] = useState(false);
 
+  // Load from localStorage
  useEffect(() => {
     const stored = localStorage.getItem("tasks");
     if (stored) setTasks(JSON.parse(stored));
   }, []);
 
+   // Save to localStorage
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = (data: FormData) => {
+  const addTask = (data: TaskFormData) => {
     const newTask: Task = {
       ...data,
       id: crypto.randomUUID(),
@@ -28,7 +32,7 @@ const Dashboard = () => {
     setTasks((prev) => [...prev, newTask]);
   };
 
-  const updateStatus = (id: string, status: any) => {
+  const updateStatus = (id: string, status: TaskStatus) => {
     setTasks((prev) =>
       prev.map((task) =>
         task.id === id ? { ...task, status } : task
@@ -40,7 +44,10 @@ const Dashboard = () => {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   };
 
-  const filteredTasks = filteredTasks(tasks, filters);
+  
+  const processedTasks  = sortTasksByDate(
+    filterTasks(tasks, filters)
+  );
 
   const stats = {
     total: tasks.length,
@@ -49,7 +56,7 @@ const Dashboard = () => {
 
 
  return(
-    <div className={darkMode ? "dark bg-gray-900 text-white" : ""}>
+     <div className={darkMode ? "dark bg-gray-900 text-white" : ""}>
       <div className="p-6 max-w-5xl mx-auto space-y-6">
         <div className="flex justify-between">
           <h1 className="text-2xl font-bold">Task Dashboard</h1>
@@ -61,20 +68,21 @@ const Dashboard = () => {
           </button>
         </div>
 
-        <div className="flex gap-6 flex-col md:flex-row">
-          <TaskForm onAddTask={addTask} />
-          <div className="flex-1">
-            <TaskFilter onFilterChange={setFilters} />
-            <TaskList
-              tasks={filteredTasks}
-              onStatusChange={updateStatus}
-              onDelete={deleteTask}
-            />
-          </div>
-        </div>
+        <TaskForm onAddTask={addTask} />
+
+        <TaskFilter
+          filters={filters}
+          onFilterChange={setFilters}
+        />
+
+        <TaskList
+          tasks={processedTasks}
+          onStatusChange={updateStatus}
+          onDelete={deleteTask}
+        />
 
         <div className="p-4 border rounded">
-          <p>Total Tasks: {stats.total}</p>
+          <p>Total: {stats.total}</p>
           <p>Completed: {stats.completed}</p>
         </div>
       </div>

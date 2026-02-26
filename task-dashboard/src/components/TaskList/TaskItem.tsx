@@ -4,7 +4,7 @@ import { formatDate } from "../../utils/taskUtils";
 const TaskItem = ({ task, onStatusChange, onDelete }: TaskItemProps) => {
   return (
     <div className="space-y-4 m-2">
-      <div className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-black dark:border-gray-700">
+      <div className="p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow bg-purple dark:bg-black dark:border-gray-700">
         <div className="flex justify-between items-start">
           <div>
             <h3 className="text-lg font-semibold">{task.title}</h3>

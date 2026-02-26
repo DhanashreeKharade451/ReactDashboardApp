@@ -55,6 +55,7 @@ Ans:
 -Centralized in Dashboard using useState.
 Derived state (processedTasks) calculated using utility functions:
 const processedTasks = sortTasksByDate(filterTasks(tasks, filters));
+Dark mode toggle managed in Dashboard and applied via Tailwind dark class.
 *************************************************************************
 *****
 

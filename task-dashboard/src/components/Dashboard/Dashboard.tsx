@@ -3,7 +3,8 @@ import { TaskFilter } from "../TaskFilter/TaskFilter.tsx";
 import TaskForm from "../TaskForm/TaskForm.tsx";
 import TaskList from "../TaskList/TaskList.tsx";
 import { filterTasks,sortTasksByDate } from "../../utils/taskUtils.ts";
-import { Task,TaskFormData, FilterOptions,TaskStatus } from "../../types/index.ts";
+import type { Task, TaskFormData, FilterOptions, TaskStatus } 
+from "../../types";
 
 
 const Dashboard = () => {

@@ -13,7 +13,7 @@ const TaskItem = ({ task, onStatusChange, onDelete }: TaskItemProps) => {
           <div className="flex gap-2">
             {/* Status Change */}
             <select
-              className=""
+              className="transition-all duration-300 hover:scale-[1.02]"
               value={task.status}
               onChange={(e) =>
                 onStatusChange(task.id, e.target.value as TaskStatus)

@@ -23,7 +23,19 @@ Component props typed (TaskListProps, TaskItemProps, TaskFilterProps).
     Filter updates: (filters: FilterOptions) => void
 -Type casting when necessary, e.g., casting filter select values to TaskStatus or TaskPriority.
 *************************************************************************************************************
-The challenges you encountered and how you overcame them
+Q2. The challenges you encountered and how you overcame them?
+Ans: 
+-My  Biggest challenge is Tailwind By mistake I installed tailwing in different folder and was trying to apply style but it was not giving required result. 
+it took my lots of time to fix this issue.
+
+-Importing types or components with .ts or .tsx caused “cannot find module” errors.
+Solution: Removed explicit extensions in imports and relied on TypeScript module resolution:
+"-App  couldent  find" : there was problem to give path when import App was importing changed path and it resolved.
+-Needed multiple filters (status, priority, search) and sorting by date.
+    Solution: Created utility functions:
+filterTasks(tasks, filters) → filters tasks based on multiple criteria.
+sortTasksByDate(tasks) → sorts tasks by dueDate.
+ 
 Your approach to component composition and state management
 ******************************************************************************
 

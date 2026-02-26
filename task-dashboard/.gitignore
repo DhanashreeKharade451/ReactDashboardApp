@@ -1,3 +1,32 @@
+Answers for reflection Questions:
+# //*************************************//
+Q1.How you implemented React and TypeScript features?
+Ans:
+-Used functional components for all UI elements (Dashboard, TaskForm, TaskFilter, TaskList, TaskItem).
+-created useState to manage local component state: 
+    tasks in Dashboard holds all tasks.
+    filters in Dashboard tracks filter values.
+    formData in TaskForm manages input values.
+-used useEffect to persist tasks to localStorage:
+      Load tasks on initial render.
+      Save tasks whenever they change.
+-Props and callbacks:
+    Child components receive props (tasks, onStatusChange, onDelete, etc.).
+    Actions in child components trigger callbacks to update parent state.
+
+-Created Interfaces and types for all data structures and props:
+Task, TaskFormData, FilterOptions, TaskStatus, TaskPriority.
+Component props typed (TaskListProps, TaskItemProps, TaskFilterProps).
+
+-Strict typing in callbacks:
+    Status updates: (id: string, status: TaskStatus) => void
+    Filter updates: (filters: FilterOptions) => void
+-Type casting when necessary, e.g., casting filter select values to TaskStatus or TaskPriority.
+*************************************************************************************************************
+The challenges you encountered and how you overcame them
+Your approach to component composition and state management
+******************************************************************************
+
 # Logs
 logs
 *.log

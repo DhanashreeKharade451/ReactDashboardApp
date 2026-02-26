@@ -1,5 +1,5 @@
-import React, { useActionState, useState } from 'react';
-import { TaskFormData } from '../../types';
+import React, { useState } from 'react';
+import type { TaskFormData } from '../../types';
 
 interface Props {
     onAddTask: (data: TaskFormData) => void;
@@ -41,14 +41,64 @@ interface Props {
   };
 
     return(
-        <form onSubmit={handleSubmit}
-        className='p-4 border rounded-lg space-y-3 bg-white dark:bg-gray-800'>
+        <form
+    onSubmit={handleSubmit}
+    className="p-4 border rounded-lg space-y-3 bg-white dark:bg-gray-800"
+  >
+    <input
+      type="text"
+      placeholder="Title"
+      value={formData.title}
+      onChange={(e) =>
+        setFormData({ ...formData, title: e.target.value })
+      }
+      className="w-full p-2 border rounded"
+    />
 
-            <input type="text" />
+    {errors.title && (
+      <p className="text-red-500 text-sm">{errors.title}</p>
+    )}
 
-            <textarea name="" id=""/>
+    <textarea
+      placeholder="Description"
+      value={formData.description}
+      onChange={(e) =>
+        setFormData({ ...formData, description: e.target.value })
+      }
+      className="w-full p-2 border rounded"
+    />
 
-        </form>
+    <select
+      value={formData.priority}
+      onChange={(e) =>
+        setFormData({
+          ...formData,
+          priority: e.target.value as any,
+        })
+      }
+      className="w-full p-2 border rounded"
+    >
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+
+    <input
+      type="date"
+      value={formData.dueDate}
+      onChange={(e) =>
+        setFormData({ ...formData, dueDate: e.target.value })
+      }
+      className="w-full p-2 border rounded"
+    />
+
+    <button
+      type="submit"
+      className="bg-blue-500 text-white px-4 py-2 rounded w-full"
+    >
+      Add Task
+    </button>
+  </form>
     );
 
 }

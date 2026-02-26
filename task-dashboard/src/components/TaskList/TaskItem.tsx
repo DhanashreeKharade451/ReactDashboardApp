@@ -1,4 +1,5 @@
 import type { Task, TaskItemProps, TaskStatus } from "../../types";
+import { formatDate } from "../../utils/taskUtils";
 
 const TaskItem = ({ task, onStatusChange, onDelete }: TaskItemProps) => {
   return (
@@ -12,7 +13,7 @@ const TaskItem = ({ task, onStatusChange, onDelete }: TaskItemProps) => {
           <div className="flex gap-2">
             {/* Status Change */}
             <select
-              className="px-2 py-1 rounded bg-white mx-2 bg-yellow-100 text-yellow-800"
+              className=""
               value={task.status}
               onChange={(e) =>
                 onStatusChange(task.id, e.target.value as TaskStatus)
@@ -33,7 +34,7 @@ const TaskItem = ({ task, onStatusChange, onDelete }: TaskItemProps) => {
         <div className="mt-2 flex gap-4 text-sm">
           <span className="text-green-600">{task.priority}</span>
           <span className="text-gray-500">
-            Due:{task.dueDate || "No Due Date"}
+            Due:{formatDate(task.dueDate)}
           </span>
         </div>
       </div>

@@ -34,8 +34,10 @@ export interface TaskListProps {
 }
 
 //TaskItem Component
-export interface TaskItemProps extends TaskListProps {
+export interface TaskItemProps {
   task: Task;
+  onStatusChange: (id: string, status: TaskStatus) => void;
+  onDelete: (id: string) => void;
 }
 
 //TaskFilter Component
